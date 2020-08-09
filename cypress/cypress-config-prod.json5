@@ -1,0 +1,9 @@
+{
+  emailPrefix: 'centrapay',
+  authBaseUrl: 'https://auth.centrapay.com',
+  appBaseUrl: 'https://kete.centrapay.com',
+  apiBaseUrl: 'https://kete.centrapay.com',
+  oauthClientId: 'f024uq8c46vsgci31iak2dlpg',
+  testApiKey: 'f32c5497297084e5354b47c40d5ccacb109ce483',
+  testClientId: '60e4db895972d000065b5798',
+}

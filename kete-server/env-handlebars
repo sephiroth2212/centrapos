@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+const fs = require('fs');
+const handlebars = require('handlebars');
+const template = fs.readFileSync(process.stdin.fd, 'utf-8');
+const render = handlebars.compile(template, { noEscape: true });
+const helpers = {
+  json: x => JSON.stringify(x) || '""' ,
+};
+console.log(render(process.env, { helpers }));

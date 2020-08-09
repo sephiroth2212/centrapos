@@ -1,0 +1,9 @@
+node_modules/
+.cache/
+dist/
+kete-server/static/
+kete-server/legacy-static/
+cypress/videos
+cypress/screenshots
+*.log
+.idea/*

@@ -1,0 +1,74 @@
+image: node:14
+
+definitions:
+  services:
+    docker:
+      memory: 3072
+
+pipelines:
+  pull-requests:
+    '**':
+      - parallel:
+        - step:
+            name: Lint
+            script: [
+              "yarn install --frozen-lock-file",
+              "yarn lint",
+              "scripts/no-package-lock.sh",
+              "scripts/no-moment.sh",
+            ]
+            caches: [ node ]
+        - step:
+            name: Unit test
+            script: [ "yarn install --frozen-lock-file && yarn test" ]
+            caches: [ node ]
+        - step:
+            name: Cypress
+            image: centrapay/ci-node:2.0.0
+            services: [ docker ]
+            script: [ "yarn install --frozen-lock-file && scripts/cypress-run.sh" ]
+            artifacts: [ "cypress/videos/**", "*.log" ]
+            caches: [ node ]
+        - step:
+            size: 2x
+            name: Helm Validate
+            image: centrapay/kube-deployer:1.16.0
+            services: [ docker ]
+            script: [ scripts/helm-validate.sh ]
+
+  branches:
+    master:
+      - parallel:
+        - step:
+            name: Lint
+            script: [ "yarn install --frozen-lock-file && yarn lint" ]
+            caches: [ node ]
+        - step:
+            name: Unit test
+            script: [ "yarn install --frozen-lock-file && yarn test" ]
+            caches: [ node ]
+        - step:
+            name: Cypress
+            image: centrapay/ci-node:2.0.0
+            services: [ docker ]
+            script: [ "yarn install --frozen-lock-file && scripts/cypress-run.sh" ]
+            artifacts: [ "cypress/videos/**", "*.log" ]
+            caches: [ node ]
+        - step:
+            size: 2x
+            name: Publish
+            image: centrapay/kube-deployer:1.16.0
+            script: [ "yarn install --frozen-lock-file && ./publish.sh $BITBUCKET_BUILD_NUMBER" ]
+            services: [ docker ]
+            caches: [ node ]
+      - step:
+          name: Deploy dev
+          deployment: test
+          image: centrapay/kube-deployer:1.16.0
+          script: [ "./deploy.sh --env dev --version $BITBUCKET_BUILD_NUMBER" ]
+      - step:
+          name: Deploy Production
+          deployment: production
+          image: centrapay/kube-deployer:1.16.0
+          script: [ "./deploy.sh --env prod --version $BITBUCKET_BUILD_NUMBER" ]
+          trigger: manual

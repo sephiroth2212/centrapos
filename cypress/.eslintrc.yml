@@ -1,0 +1,9 @@
+env:
+  cypress/globals: true
+plugins:
+  - cypress
+globals:
+  faker: readonly
+  models: readonly
+  stub: readonly
+  BigInt: readonly

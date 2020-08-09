@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  app:
+    volumes: [ node-modules:/work/node_modules ]
+  cypress:
+    volumes:
+      - node-modules:/work/node_modules
+      - cypress-cache:/root/.cache/Cypress
+  script:
+    volumes: [ node-modules:/work/node_modules ]
+
+volumes:
+  node-modules:
+  cypress-cache:

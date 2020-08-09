@@ -1,0 +1,14 @@
+{
+  port: 7780,
+  public: {
+    apiBaseUrl: 'https://kete.centrapay.com',
+    webBaseUrl: 'https://kete.centrapay.com',
+    oauthAuthority: 'https://auth.centrapay.com',
+    oauthClientId: 'f024uq8c46vsgci31iak2dlpg',
+    oidcLogLevel: 'INFO',
+  },
+  manifest: {
+    name: 'Centrapay',
+    shortName: 'Centrapay'
+  }
+}

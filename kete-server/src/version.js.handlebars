@@ -1,0 +1,6 @@
+module.exports = {
+  version: `{{ BITBUCKET_REPO_FULL_NAME }}@{{ BITBUCKET_BUILD_NUMBER }}`,
+  build: {{ json BITBUCKET_BUILD_NUMBER }},
+  commit: {{ json BITBUCKET_COMMIT }},
+  timestamp: {{ json TIMESTAMP }}
+};

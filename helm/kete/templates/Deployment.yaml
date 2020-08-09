@@ -1,0 +1,76 @@
+{{- $root := . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.appName}}-service
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: {{.Values.replicas}}
+  selector:
+    matchLabels:
+      app: {{.Values.appName}}-service
+  revisionHistoryLimit: 2
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: {{.Values.appName}}-service
+    spec:
+      serviceAccountName: {{.Values.appName}}
+      securityContext:
+        fsGroup: 65534
+        runAsUser: 1000
+        runAsNonRoot: true
+      containers:
+      - name: {{.Values.appName}}
+        image: {{ .Values.image.repository }}{{ .Values.image.name }}:{{ .Chart.Version }}
+        securityContext:
+          readOnlyRootFilesystem: true
+        env:
+        - name: ENV
+          value: {{.Values.env}}
+        - name: API_BASE_URL
+          value: {{.Values.apiBaseUrl}}
+        - name: WEB_BASE_URL
+          value: {{.Values.webBaseUrl}}
+        - name: OAUTH_AUTHORITY
+          value: {{.Values.oauthAuthority}}
+        - name: OAUTH_CLIENT_ID
+          value: {{.Values.oauthClientId}}
+        - name: SENTRY_ENABLED
+          value: "true"
+        - name: SENTRY_TRACES_SAMPLE_RATE
+          value: "0.2"
+        - name: TEST_MERCHANT_ID
+          value: {{.Values.testMerchantId }}
+        - name: TEST_CLIENT_ID
+          value: {{.Values.testClientId }}
+        - name: TEST_API_KEY
+          value: {{.Values.testApiKey }}
+        - name: MANIFEST_NAME
+          value: {{.Values.manifestName }}
+        - name: MANIFEST_SHORT_NAME
+          value: {{.Values.manifestShortName }}
+        readinessProbe:
+          httpGet:
+            path: /version
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /version
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: {{.Values.requestsCpu}}
+            memory: {{.Values.requestsMemory}}
+          limits:
+            cpu: {{.Values.limitsCpu}}
+            memory: {{.Values.limitsMemory}}

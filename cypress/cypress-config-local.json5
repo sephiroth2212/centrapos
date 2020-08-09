@@ -1,0 +1,5 @@
+{
+  appBaseUrl: 'http://localhost:7780',
+  /* mailosaur api key is needed to test locally */
+  mailosaurApiKey: 'ZZZ',
+}

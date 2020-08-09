@@ -1,0 +1,10 @@
+env: prod
+apiBaseUrl: https://kete.centrapay.com
+webBaseUrl: https://kete.centrapay.com
+oauthClientId: f024uq8c46vsgci31iak2dlpg
+oauthAuthority: https://auth.centrapay.com/
+testMerchantId: '5efbe17d96c083633e2b9241'
+testClientId: '5efbe2fb96c08357bb2b9242'
+testApiKey: 'f32c5497297084e5354b47c40d5ccacb109ce483'
+manifestName: 'Kete'
+manifestShortName: 'Kete'

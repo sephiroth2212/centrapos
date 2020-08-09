@@ -1,0 +1,26 @@
+{
+  "name": "kete-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js"
+  },
+  "main": "main.js",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.1",
+    "@hapi/inert": "^6.0.1",
+    "@hapi/vision": "^6.0.1",
+    "convict": "^6.0.0",
+    "json5": "^2.1.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "handlebars": "^4.7.6",
+    "nodemon": "^2.0.4"
+  },
+  "homepage": "https://bitbucket.org/centrapay/kete#readme",
+  "keywords": [],
+  "license": "ISC"
+}

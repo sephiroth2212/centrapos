@@ -1,0 +1,17 @@
+{
+  port: 7780,
+  public: {
+    apiBaseUrl: 'https://kete.cp42.click',
+    webBaseUrl: 'https://kete.cp42.click',
+    oauthAuthority: 'https://auth.cp42.click/',
+    oauthClientId: '60th2oe9brf0hgmtqdumr1qb6f',
+    oidcLogLevel: 'INFO',
+    testMerchantId: '5f693f4b080872000653a182',
+    testClientId: '5f69407b986efa0007cb2e96',
+    testApiKey: 'axtXGv96qFhx2r2gMzJm9vwa3fegbyXcU4xtD7bx7',
+  },
+  manifest: {
+    name: 'Centrapay Developement',
+    shortName: 'CP Dev'
+  }
+}

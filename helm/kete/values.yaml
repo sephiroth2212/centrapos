@@ -1,0 +1,14 @@
+namespace: web
+appName: kete
+httpPath: /
+image:
+  repository: 514963023142.dkr.ecr.ap-southeast-1.amazonaws.com/centrapay/
+  name: kete
+replicas: 2
+requestsCpu: 50m
+requestsMemory: 128Mi
+limitsCpu: 100m
+limitsMemory: 256Mi
+minReplicas: 2
+maxReplicas: 4
+targetCPUUtilizationPercentage: 50

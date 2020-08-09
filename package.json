@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "name": "kete",
+  "scripts": {
+    "lint": "vue-cli-service lint --max-warnings 0 --no-fix .",
+    "clean": "rm -r kete-server/static/ || echo All clean",
+    "start": "yarn clean; concurrently yarn:start-frontend yarn:start-server",
+    "build": "yarn clean; yarn build-frontend",
+    "test": "yarn test-frontend",
+    "start-frontend": "cd kete-frontend && yarn start",
+    "start-server": "cd kete-server && yarn start",
+    "test-frontend": "cd kete-frontend && yarn test",
+    "build-frontend": "cd kete-frontend && yarn build"
+  },
+  "workspaces": [
+    "kete-frontend",
+    "kete-server"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
+    "@babel/eslint-plugin": "^7.14.5",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "concurrently": "^5.3.0",
+    "cypress": "^8.7.0",
+    "cypress-log-to-output": "^1.1.2",
+    "cypress-mailosaur": "^2.1.1",
+    "cypress-terminal-report": "^2.4.0",
+    "date-fns": "^2.28.0",
+    "eslint": "^7.20.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-no-only-tests": "^2.4.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "faker": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "wait-on": "^5.2.0"
+  },
+  "dependencies": {}
+}

@@ -31,10 +31,9 @@ const fontPolicy = `font-src
 
 const stylePolicy = `style-src
   'self'
-  'unsafe-inline'
   https://fonts.googleapis.com
   https://cdn.jsdelivr.net
-;`; // remove unsafe-inline after completely removing legacy-kete code, add unsafe-inline only when developing
+;`;
 
 const imgPolicy = `img-src
   'self'

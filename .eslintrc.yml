@@ -1,7 +1,6 @@
 ignorePatterns:
   - dist
   - kete-server/static
-  - kete-server/legacy-static
 
 env:
   es6: true

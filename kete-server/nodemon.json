@@ -2,7 +2,6 @@
   "verbose": true,
   "ext": "js,json5",
   "ignore": [
-    "static/*",
-    "legacy-static/*"
+    "static/*"
   ]
 }

@@ -13,12 +13,8 @@ const routes = [
     component: () => import('@/config/pages/ConfigScreen'),
   },
   {
-    path: '/signup',
-    /*
-     * Slurp query params and redirect to root to force login. Query params are
-     * handled by oidc.js for forwarding to login app.
-     */
-    redirect: { path: '/', query: null }
+    path: '/',
+    redirect: { path: '/sales', query: null }
   },
   {
     name: 'Component Guide',
@@ -40,11 +36,20 @@ const routes = [
     meta: { public: true }
   },
   {
-    name: 'Hello World',
-    path: '/',
-    alias: '*',
-    component: () => import('@/HelloWorld'),
+    name: 'Sales',
+    path: '/sales',
+    component: () => import('@/sales/pages/Sales'),
   },
+  {
+    name: 'Inventory',
+    path: '/inventory',
+    component: () => import('@/inventory/pages/Inventory'),
+  },
+  {
+    name: 'Inventory Item',
+    path: '/inventory-item',
+    component: () => import('@/inventory/pages/InventoryItem'),
+  }
 ];
 
 const router = new VueRouter({

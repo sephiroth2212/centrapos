@@ -4,7 +4,9 @@
     class="h-full"
   >
     <main>
-      <router-view />
+      <menu-layout>
+        <router-view />
+      </menu-layout>
     </main>
     <svg-sprite />
   </div>
@@ -17,6 +19,7 @@ import { mapState } from 'vuex';
 import SvgSprite from '@/components/SvgSprite';
 import Icon from '@/components/Icon';
 import BackButton from '@/components/BackButton';
+import MenuLayout from "@/components/MenuLayout";
 
 Vue.component('Icon', Icon);
 Vue.component('BackButton', BackButton);
@@ -24,6 +27,7 @@ Vue.component('BackButton', BackButton);
 export default Vue.extend({
   components: {
     SvgSprite,
+    MenuLayout,
   },
 
   computed: {

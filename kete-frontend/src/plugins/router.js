@@ -8,22 +8,9 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/oidc-callback',
-    meta: { public: true },
-  },
-  {
-    path: '/logout/oidc-callback',
-    meta: { public: true },
-  },
-  {
     path: '/config',
     meta: { public: true },
     component: () => import('@/config/pages/ConfigScreen'),
-  },
-  {
-    path: '/auth',
-    meta: { public: true },
-    component: () => import('@/auth/pages/AuthTest'),
   },
   {
     path: '/signup',
@@ -63,17 +50,6 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes
-});
-
-router.beforeEach(async (to, from, next) => {
-  window.document.title = to.name ? `${to.name} - Centrapay` : 'Centrapay';
-  if (to.meta?.public) {
-    return next();
-  }
-  await store.dispatch('auth/ensureAuthenticated');
-  if (store.getters['auth/userValid']) {
-    next();
-  }
 });
 
 export default router;
